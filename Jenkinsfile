@@ -8,6 +8,7 @@ pipeline {
         Line2 comment
 
         */
+        /*
         stage('Build') {
             agent{
                 docker {
@@ -26,10 +27,10 @@ pipeline {
                 '''
             }
         }
-        
+        */
         stage('Tests'){
-            parallel{
-                stage('Unit Tests'){
+            parallel {
+                stage('Unit Tests') {
                     agent{
                         docker {
                             image 'node:18-alpine'
@@ -49,13 +50,14 @@ pipeline {
 
                 }
                 
-                stage('E2E'){
+                stage('E2E') {
                     agent{
                         docker {
                             image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
                             reuseNode true
                         }
-                    }            
+                    }    
+
                     steps {
                         sh '''
                             npm install serve
